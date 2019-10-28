@@ -1,12 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
-const cheerio = require('cheerio');
-const request = require('request-promise');
 const app = express();
+require('./scraping');
 
 /*Settings*/
 app.set('appName','Scraping Farmacy');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 
 /*Middlewares*/
 app.use(express.json());
@@ -25,6 +24,11 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+async function init(){
+    const response = await request('http://quotes.toscrape.com/');
+    console.log(response);
+}
 
 /*Server*/
 app.listen(app.get('port'), () => {
