@@ -13,7 +13,7 @@ async function init(){
 
     //Get the first div with a class called "content-txt2". The method find search another tag inside the div found
     const productName = $('div.content-txt2').find('div.content_product').find('a').find('div.descripcion-lineal');
-    console.log(productName.html().trim());
+    console.log(productName.html());
 
     //Getting all product names per page
     const allProducts = $('div.content-txt2 div.content_product div.descripcion-lineal').each((i, el) => {
