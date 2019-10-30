@@ -1,13 +1,15 @@
-require('./config/config');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
-const bodyParser = require('body-parser'); //for read the body petitions in api 
+require('./scraping');
 
-//////////////////////////////////////////
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
-app.use(bodyParser.json());
+/*Settings*/
+app.set('appName','Scraping Farmacy');
+app.set('port', process.env.PORT || 8000);
+
+/*Middlewares*/
+app.use(express.json());
+app.use(morgan('dev'));
 // Add headers
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -23,40 +25,13 @@ app.use(function (req, res, next) {
     next();
 });
 
-////////////////////////////////////////////////////////////////
+async function init(){
+    const response = await request('http://quotes.toscrape.com/');
+    console.log(response);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////Port configuration
-app.listen(process.env.PORT,()=>{
-    console.log('Running in the port number : ',3000);
+/*Server*/
+app.listen(app.get('port'), () => {
+    console.log(`${app.get('appName')} backend server is running`);
+    console.log(`Server on port ${app.get('port')}`);
 });

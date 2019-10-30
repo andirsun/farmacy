@@ -4,7 +4,8 @@
   "description": "Node Js server Scrapping",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,13 @@
   "homepage": "https://github.com/andirsun/farmacy#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
